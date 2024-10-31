@@ -1,0 +1,96 @@
+
+.header{
+    margin-top: 0px;
+    border: solid;
+    border-color: rgb(255, 255, 255);
+    background-color:rgb(158, 164, 164);
+    height:70px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    position: relative;
+    width: 100%;
+}
+.nav-btn{
+    color:aliceblue;
+    background-color: black;
+    
+
+}
+.left-section{
+   width:fit-content;
+}
+.right-section{
+    display: flex;
+    flex-direction: row;
+}
+
+#logo{
+   height: 70px;
+}
+
+.menu-section{
+    margin-top: 0px;
+    display: flex;
+    flex-direction: row;
+    width: 1300px;
+    
+}
+
+.menu-item{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-top: 40px;
+    margin-left: 300px;
+    row-gap: 30px;
+}
+
+.food-preview{
+    border: solid;
+    border-width: 2px;
+    width: 250px;
+    border-radius: 12px;
+    box-shadow: 2px 2px 7px rgba(0,0,0,0.15);
+
+}
+.foodpic-row{
+    width: 100%;
+}
+
+.foodpic{
+    width: 100%;
+    border-radius: 8px;
+}
+
+.addToCart{
+    background-color: rgb(87, 80, 80);
+    border:none;
+    color:aliceblue;
+    padding: 10px 10px 10px 10px;
+    border-radius: 8px;
+    
+}
+
+.payment-section{
+    border: solid;
+    width: 500px;
+    height: 700px;
+    margin-left: 500px;
+    margin-top: 50px;;
+}
+
+
+.payment-btn, .wallet-btn{
+    background-color: rgb(69, 64, 64);
+    color:aliceblue;
+    border:none;
+    border-radius: 10px;
+    padding: 10px 8px 10px 10px;
+    margin-bottom: 0px;
+}
+
+
+
+

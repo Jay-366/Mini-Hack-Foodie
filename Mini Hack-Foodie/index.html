@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <title>Simple Food Order System</title>
+    <link rel="stylesheet" href="styles/general.css">
+
+    
+</head>
+<body>
+<!--header-->
+<div class="header">
+    <div class="left-section">
+        <img id="logo" href="website.html" src="logo\Screenshot 2024-10-29 202721.png">
+    </div>
+    <div class="right-section">
+        <div class="nav-buttons">
+                <button class="nav-btn"onclick="goToMenuPage()">Menu</button>
+                <button class="nav-btn"onclick="goToReviewPage()">Reviews</button>
+                <button class="nav-btn"onclick="goToPaymentPage()">Cart/Payment</button>
+        </div>
+        
+    </div>
+
+</div>
+
+<!-- Menu Page -->
+<div class="menu-section" id="menu-page">
+    
+    <div class="menu-item">
+    
+        <div class="food-preview">
+            <div class="foodpic-row"> 
+                <img class="foodpic" src="food-pic\download.jpeg" >
+            </div>
+            <div class="video-info-grid">
+            
+                <div class="video-info">
+                <p class="video-title"> Pizza  RM20 </p>
+                <button class="addToCart" onclick="addToCart('Pizza', 20)">Add to Cart</button>
+                </div>
+            </div>    
+        </div>
+
+        <div class="food-preview">
+            <div class="foodpic-row"> 
+                <img class="foodpic" src="food-pic\download.jpeg" >
+            </div>
+            <div class="video-info-grid">
+            
+                <div class="video-info">
+                <p class="video-title"> Pizza  RM20 </p>
+                <button class="addToCart" onclick="addToCart('Pizza', 20)">Add to Cart</button>
+                </div>
+            </div>    
+        </div>
+
+        <div class="food-preview">
+            <div class="foodpic-row"> 
+                <img class="foodpic" src="food-pic\download.jpeg" >
+            </div>
+            <div class="video-info-grid">
+            
+                <div class="video-info">
+                <p class="video-title"> Pizza  RM20 </p>
+                <button class="addToCart" onclick="addToCart('Burger', 20)">Add to Cart</button>
+                </div>
+            </div>    
+        </div>
+
+        <div class="food-preview">
+            <div class="foodpic-row"> 
+                <img class="foodpic" src="food-pic\download 2.jpeg" >
+            </div>
+            <div class="video-info-grid">
+            
+                <div class="video-info">
+                <p class="video-title"> Burger  RM20 </p>
+                <button class="addToCart" onclick="addToCart('Burger', 10)">Add to Cart</button>
+                </div>
+            </div>    
+        </div>
+
+        <div class="food-preview">
+            <div class="foodpic-row"> 
+                <img class="foodpic" src="food-pic\download 2.jpeg" >
+            </div>
+            <div class="video-info-grid">
+            
+                <div class="video-info">
+                <p class="video-title"> Burger  RM20 </p>
+                <button class="addToCart" onclick="addToCart('Burger', 10)">Add to Cart</button>
+                </div>
+            </div>    
+        </div>
+
+        <div class="food-preview">
+            <div class="foodpic-row"> 
+                <img class="foodpic" src="food-pic\download 2.jpeg" >
+            </div>
+            <div class="video-info-grid">
+            
+                <div class="video-info">
+                <p class="video-title"> Burger  RM20 </p>
+                <button class="addToCart" onclick="addToCart('Burger', 10)">Add to Cart</button>
+                </div>
+            </div>    
+        </div>
+
+        <div class="food-preview">
+            <div class="foodpic-row"> 
+                <img class="foodpic" src="food-pic\download 2.jpeg" >
+            </div>
+            <div class="video-info-grid">
+            
+                <div class="video-info">
+                <p class="video-title"> Burger  RM20 </p>
+                <button class="addToCart" onclick="addToCart('Burger', 10)">Add to Cart</button>
+                </div>
+            </div>    
+        </div>
+        <div class="food-preview">
+            <div class="foodpic-row"> 
+                <img class="foodpic" src="food-pic\download 2.jpeg" >
+            </div>
+            <div class="video-info-grid">
+            
+                <div class="video-info">
+                <p class="video-title"> Burger  RM20 </p>
+                <button class="addToCart" onclick="addToCart('Burger', 10)">Add to Cart</button>
+                </div>
+            </div>    
+        </div>
+
+        <div class="food-preview">
+            <div class="foodpic-row"> 
+                <img class="foodpic" src="food-pic\download 2.jpeg" >
+            </div>
+            <div class="video-info-grid">
+            
+                <div class="video-info">
+                <p class="video-title"> Burger  RM20 </p>
+                <button class="addToCart" onclick="addToCart('Burger', 10)">Add to Cart</button>
+                </div>
+            </div>    
+        </div>
+
+        <div class="food-preview">
+            <div class="foodpic-row"> 
+                <img class="foodpic" src="food-pic\download 2.jpeg" >
+            </div>
+            <div class="video-info-grid">
+            
+                <div class="video-info">
+                <p class="video-title"> Burger  RM20 </p>
+                <button class="addToCart" onclick="addToCart('Burger', 10)">Add to Cart</button>
+                </div>
+            </div>    
+        </div>
+
+        
+     
+    
+        
+        
+    </div>
+
+
+
+</div>
+
+<!-- Review Page -->
+<div class="review-section" id="review-page">
+    <h2>Customer Reviews</h2>
+    <div class="review-item">
+        <strong>John:</strong> Great pizza!
+    </div>
+    <div class="review-item">
+        <strong>Sarah:</strong> Loved the burger!
+    </div>
+    <h3>Add a Review</h3>
+    <form class="review-form" onsubmit="addReview(event)">
+        <input type="text" id="reviewer" placeholder="Your name" required>
+        <textarea id="review-text" placeholder="Your review" required></textarea>
+        <button type="submit">Submit Review</button>
+    </form>
+    <div id="reviews"></div>
+</div>
+
+<!-- Payment Page -->
+<div class="section" id="payment-page">
+    <h2>Your Cart</h2>
+    <ul class="cart" id="cart"></ul>
+    <p>Total: $<span id="total">0</span></p>
+    <button class="payment-btn" onclick="processPayment()">Pay $<span id="payment-total">0</span></button>
+</div>
+
+<!-- Navigation Buttons -->
+<div class="nav-buttons">
+    <button class="nav-btn"onclick="showPage('menu-page')">Menu</button>
+    <button onclick="showPage('review-page')">Reviews</button>
+    <button onclick="showPage('payment-page')">Cart/Payment</button>
+</div>
+
+
+
+
+
+<script>
+    let cart = [];
+    let total = 0;
+
+    
+
+
+    // Function to display the selected page and hide others
+    function showPage(pageId) {
+        const pages = document.querySelectorAll('.section');
+        pages.forEach(page => {
+            page.style.display = (page.id === pageId) ? 'block' : 'none';
+        });
+    }
+
+    // Show the menu page by default
+    showPage('menu-page');
+
+    // Function to add items to the cart
+    function addToCart(item, price) {
+        cart.push({ item, price });
+        total += price;
+        updateCart();
+    }
+
+    // Function to update the cart display
+    function updateCart() {
+        const cartElement = document.getElementById("cart");
+        cartElement.innerHTML = '';
+        cart.forEach((cartItem) => {
+            const li = document.createElement("li");
+            li.textContent = `${cartItem.item} - $${cartItem.price}`;
+            cartElement.appendChild(li);
+        });
+        document.getElementById("total").textContent = total;
+        document.getElementById("payment-total").textContent = total;
+
+        console.log(total);
+    }
+
+    // Function to add a new review
+    // function addReview(event) {
+    //     event.preventDefault();
+    //     const name = document.getElementById("reviewer").value;
+    //     const reviewText = document.getElementById("review-text").value;
+        
+    //     const reviewsDiv = document.getElementById("reviews");
+    //     const reviewItem = document.createElement("div");
+    //     reviewItem.classList.add("review-item");
+    //     reviewItem.innerHTML = `<strong>${name}:</strong> ${reviewText}`;
+    //     reviewsDiv.appendChild(reviewItem);
+        
+    //     document.getElementById("reviewer").value = '';
+    //     document.getElementById("review-text").value = '';
+    // }
+
+    // Function to process payment
+
+    // function processPayment() {
+    //     if (total === 0) {
+    //         alert("Your cart is empty!");
+    //     } else {
+    //         alert(`Payment of $${total} processed successfully!`);
+    //         cart = [];
+    //         total = 0;
+    //         updateCart();
+    //     }
+    // }
+    
+    function goToMenuPage() {
+        window.location.href = 'index.html'; // Replace 'menu.html' with your file path
+    }
+    function goToPaymentPage() {
+
+        const cartEncoded = encodeURIComponent(JSON.stringify(cart));
+        window.location.href = `payment.html?total=${total}&cart=${cartEncoded}`;
+    }
+    function goToReviewPage() {
+        window.location.href = 'review.html'; // Replace 'menu.html' with your file path
+    }
+</script>
+
+</body>
+</html>
