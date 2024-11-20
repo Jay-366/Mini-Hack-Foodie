@@ -1,103 +1,112 @@
 <!DOCTYPE html>
 <head>
-<link rel="stylesheet" href="styles/general.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/solana-web3.js/1.29.1/solana-web3.min.js"></script>
-
+    <link rel="stylesheet" href="styles/general.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/solana-web3.js/1.29.1/solana-web3.min.js"></script>
 </head>
 <body>
     <div class="header">
         <div class="left-section">
-            <img id="logo" href="website.html" src="logo\Screenshot 2024-10-29 202721.png">
+            <img id="logo" href="index.html" src="logo/Screenshot 2024-10-29 202721.png" alt="Logo">
         </div>
         <div class="right-section">
             <div class="nav-buttons">
-                    <button class="nav-btn"onclick="goToMenuPage()">Menu</button>
-                    <button class="nav-btn"onclick="goToReviewPage()">Reviews</button>
-                    <button class="nav-btn"onclick="goToPaymentPage()">Cart/Payment</button>
+                <button class="nav-btn" onclick="goToMenuPage()">Menu</button>
+                <button class="nav-btn" onclick="goToPaymentPage()">Cart/Payment</button>
             </div>
-            
         </div>
-    
     </div>
+
     <div class="payment-section" id="payment-page">
         <h2>Your Cart</h2>
         <ul class="cart" id="cart"></ul>
-        <p>Total: $<span id="total">0</span></p>
-        <button class="payment-btn" onclick="processPayment()">Pay $<span id="payment-total">0</span></button>
+        <p>Total: RM<span id="total">0</span></p>
+        <button class="payment-btn" onclick="processPayment()">Pay RM<span id="payment-total">0</span></button>
         <button class="wallet-btn" id="walletButton">Connect to Wallet</button>
     </div>
 
+    <div class="bottom-section">
+        <p>Contact us | Privacy Policy | Terms of Service</p>
+        <p>© 2024 Foodie. All rights reserved.</p>
+    </div>
+
     <!-- SCRIPT -->
-<script>
-    const urlParams = new URLSearchParams(window.location.search);
-    const total = parseFloat(urlParams.get('total'));
-    const cart = JSON.parse(decodeURIComponent(urlParams.get('cart')));
+    <script>
+        // Extract URL parameters and decode cart content
+        const urlParams = new URLSearchParams(window.location.search);
+        let cart = JSON.parse(decodeURIComponent(urlParams.get('cart') || '[]'));
+        let total = parseFloat(urlParams.get('total')) || 0;
 
-    function updateCart() {
-        const cartElement = document.getElementById("cart");
-        cartElement.innerHTML = '';
-        cart.forEach((cartItem) => {
-            const li = document.createElement("li");
-            li.textContent = `${cartItem.item} - $${cartItem.price}`;
-            cartElement.appendChild(li);
-        });
-        document.getElementById("total").textContent = total;
-        document.getElementById("payment-total").textContent = total;
-    }
-    
-    
-    
-    
-    let walletPublicKey = null;
+        // Function to update the cart display
+        function updateCart() {
+            const cartElement = document.getElementById("cart");
+            cartElement.innerHTML = ''; // Clear any existing content
 
+            if (cart.length === 0) {
+                cartElement.innerHTML = '<li>Your cart is empty!</li>';
+            } else {
+                cart.forEach((item) => {
+                    const li = document.createElement("li");
+                    li.textContent = `${item.item} - RM${item.price.toFixed(2)}`;
+                    cartElement.appendChild(li);
+                });
+            }
 
-// PHAMTOM wallet
-async function connectToWallet() {
-    if (window.solana && window.solana.isPhantom) {
-        try {
-            const response = await window.solana.connect();
-            walletPublicKey = response.publicKey.toString();
-            console.log("Connected to wallet:", walletPublicKey);
+            document.getElementById("total").textContent = total.toFixed(2);
+            document.getElementById("payment-total").textContent = total.toFixed(2);
+        }
 
+        // Wallet connection logic (Phantom Wallet)
+        let walletPublicKey = null;
+
+        async function connectToWallet() {
+            if (window.solana && window.solana.isPhantom) {
+                try {
+                    const response = await window.solana.connect();
+                    walletPublicKey = response.publicKey.toString();
+                    console.log("Connected to wallet:", walletPublicKey);
+
+                    const walletButton = document.getElementById("walletButton");
+                    walletButton.innerText = 
+                        `Wallet: ${walletPublicKey.slice(0, 4)}...${walletPublicKey.slice(-4)}`;
+                } catch (err) {
+                    console.error("Wallet connection failed:", err);
+                }
+            } else {
+                alert("Please install the Phantom Wallet extension to connect!");
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            updateCart(); // Populate cart on page load
             const walletButton = document.getElementById("walletButton");
-            walletButton.innerText = "Wallet: " + walletPublicKey.slice(0, 4) + "..." + 
-                walletPublicKey.slice(-4);
-        } catch (err) {
-            console.error("Wallet connection failed:", err);
+            if (walletButton) {
+                walletButton.addEventListener("click", connectToWallet);
+            }
+        });
+
+        // Navigation functions
+        function goToMenuPage() {
+            window.location.href = 'index.html';
         }
-    } else {
-        alert("Please install the Phantom Wallet extension to connect!");
-    }
-}
 
-document.addEventListener("DOMContentLoaded", () => {
-    const walletButton = document.getElementById("walletButton");
-    if (walletButton) {
-        walletButton.addEventListener("click", connectToWallet);
-    }
-});
-    
-     function goToMenuPage() {
-        window.location.href = 'index.html'; // Replace 'menu.html' with your file path
-    }
-    function goToPaymentPage() {
-        window.location.href = 'payment.html'; // Replace 'menu.html' with your file path
-    }
-    function goToReviewPage() {
-        window.location.href = 'review.html'; // Replace 'menu.html' with your file path
-    }
-
-    function processPayment() {
-        if (total === 0) {
-            alert("Your cart is empty!");
-        } else {
-            alert(`Payment of $${total} processed successfully!`);
-            cart = [];
-            total = 0;
-            updateCart();
+        function goToPaymentPage() {
+            window.location.href = 'payment.html';
         }
-    }
 
-</script>
+        // Payment processing logic
+        function processPayment() {
+            if (total === 0) {
+                alert("Your cart is empty!");
+            } else {
+                alert(`Payment of $${total.toFixed(2)} processed successfully!`);
+                cart = [];
+                total = 0;
+                updateCart(); // Refresh the cart display after payment
+
+                // Redirect to the review page with optional data (e.g., orderID or items)
+        window.location.href = 'review.html'; 
+            }
+        }
+    </script>
 </body>
 </html>
