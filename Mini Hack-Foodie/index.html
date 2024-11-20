@@ -11,12 +11,12 @@
 <!--header-->
 <div class="header">
     <div class="left-section">
-        <img id="logo" href="website.html" src="logo\Screenshot 2024-10-29 202721.png">
+        <img id="logo" href="index.html" src="logo\Screenshot 2024-10-29 202721.png">
     </div>
     <div class="right-section">
         <div class="nav-buttons">
                 <button class="nav-btn"onclick="goToMenuPage()">Menu</button>
-                <button class="nav-btn"onclick="goToReviewPage()">Reviews</button>
+                
                 <button class="nav-btn"onclick="goToPaymentPage()">Cart/Payment</button>
         </div>
         
@@ -24,6 +24,39 @@
 
 </div>
 
+<!-- Review section -->
+<div class="review-section">
+    <h2>Top Sellers</h2>
+    <div id="reviews">
+        <!-- Sample review -->
+        <div class="review-item">
+            <div class="review-pic-row">
+                <img class="review-pic" src="food-pic\sushi.jpeg" >
+            </div>
+            <div>
+                99 has been sold <strong>TODAY</strong>
+            </div>
+        </div>
+
+        <div class="review-item">
+            <div class="review-pic-row">
+                <img class="review-pic" src="food-pic\pasta.jpeg" >
+            </div>
+            <div>
+                67 has been sold <strong>TODAY</strong>
+            </div>
+        </div>
+
+        <div class="review-item">
+            <div class="review-pic-row">
+                <img class="review-pic" src="food-pic\download.jpeg" >
+            </div>
+            <div>
+                40 has been sold <strong>TODAY</strong>
+            </div>
+        </div>
+    </div>
+</div>
 <!-- Menu Page -->
 <div class="menu-section" id="menu-page">
     
@@ -44,38 +77,12 @@
 
         <div class="food-preview">
             <div class="foodpic-row"> 
-                <img class="foodpic" src="food-pic\download.jpeg" >
-            </div>
-            <div class="video-info-grid">
-            
-                <div class="video-info">
-                <p class="video-title"> Pizza  RM20 </p>
-                <button class="addToCart" onclick="addToCart('Pizza', 20)">Add to Cart</button>
-                </div>
-            </div>    
-        </div>
-
-        <div class="food-preview">
-            <div class="foodpic-row"> 
-                <img class="foodpic" src="food-pic\download.jpeg" >
-            </div>
-            <div class="video-info-grid">
-            
-                <div class="video-info">
-                <p class="video-title"> Pizza  RM20 </p>
-                <button class="addToCart" onclick="addToCart('Burger', 20)">Add to Cart</button>
-                </div>
-            </div>    
-        </div>
-
-        <div class="food-preview">
-            <div class="foodpic-row"> 
                 <img class="foodpic" src="food-pic\download 2.jpeg" >
             </div>
             <div class="video-info-grid">
             
                 <div class="video-info">
-                <p class="video-title"> Burger  RM20 </p>
+                <p class="video-title"> Burger  RM10 </p>
                 <button class="addToCart" onclick="addToCart('Burger', 10)">Add to Cart</button>
                 </div>
             </div>    
@@ -83,81 +90,69 @@
 
         <div class="food-preview">
             <div class="foodpic-row"> 
-                <img class="foodpic" src="food-pic\download 2.jpeg" >
+                <img class="foodpic" src="food-pic\nasilemak.jpeg" >
             </div>
             <div class="video-info-grid">
             
                 <div class="video-info">
-                <p class="video-title"> Burger  RM20 </p>
-                <button class="addToCart" onclick="addToCart('Burger', 10)">Add to Cart</button>
+                <p class="video-title"> Nasi Lemak  RM8 </p>
+                <button class="addToCart" onclick="addToCart('Nasi Lemak', 8)">Add to Cart</button>
                 </div>
             </div>    
         </div>
 
         <div class="food-preview">
             <div class="foodpic-row"> 
-                <img class="foodpic" src="food-pic\download 2.jpeg" >
+                <img class="foodpic" src="food-pic\sahwarma.jpeg" >
             </div>
             <div class="video-info-grid">
             
                 <div class="video-info">
-                <p class="video-title"> Burger  RM20 </p>
-                <button class="addToCart" onclick="addToCart('Burger', 10)">Add to Cart</button>
+                <p class="video-title"> Shawarma  RM12 </p>
+                <button class="addToCart" onclick="addToCart('Shawarma', 12)">Add to Cart</button>
                 </div>
             </div>    
         </div>
 
         <div class="food-preview">
             <div class="foodpic-row"> 
-                <img class="foodpic" src="food-pic\download 2.jpeg" >
+                <img class="foodpic" src="food-pic\sushi.jpeg" >
             </div>
             <div class="video-info-grid">
             
                 <div class="video-info">
-                <p class="video-title"> Burger  RM20 </p>
-                <button class="addToCart" onclick="addToCart('Burger', 10)">Add to Cart</button>
-                </div>
-            </div>    
-        </div>
-        <div class="food-preview">
-            <div class="foodpic-row"> 
-                <img class="foodpic" src="food-pic\download 2.jpeg" >
-            </div>
-            <div class="video-info-grid">
-            
-                <div class="video-info">
-                <p class="video-title"> Burger  RM20 </p>
-                <button class="addToCart" onclick="addToCart('Burger', 10)">Add to Cart</button>
+                <p class="video-title"> Sushi  RM13 </p>
+                <button class="addToCart" onclick="addToCart('Sushi', 13)">Add to Cart</button>
                 </div>
             </div>    
         </div>
 
         <div class="food-preview">
             <div class="foodpic-row"> 
-                <img class="foodpic" src="food-pic\download 2.jpeg" >
+                <img class="foodpic" src="food-pic\teho.jpeg" >
             </div>
             <div class="video-info-grid">
             
                 <div class="video-info">
-                <p class="video-title"> Burger  RM20 </p>
-                <button class="addToCart" onclick="addToCart('Burger', 10)">Add to Cart</button>
+                <p class="video-title"> Teh Oh Limau Ais  RM3 </p>
+                <button class="addToCart" onclick="addToCart('Teh Oh Limau Ais', 3)">Add to Cart</button>
                 </div>
             </div>    
         </div>
 
         <div class="food-preview">
             <div class="foodpic-row"> 
-                <img class="foodpic" src="food-pic\download 2.jpeg" >
+                <img class="foodpic" src="food-pic\pasta.jpeg" >
             </div>
             <div class="video-info-grid">
             
                 <div class="video-info">
-                <p class="video-title"> Burger  RM20 </p>
-                <button class="addToCart" onclick="addToCart('Burger', 10)">Add to Cart</button>
+                <p class="video-title"> Pasta  RM20 </p>
+                <button class="addToCart" onclick="addToCart('Pasta', 20)">Add to Cart</button>
                 </div>
             </div>    
         </div>
-
+        
         
      
     
@@ -169,38 +164,12 @@
 
 </div>
 
-<!-- Review Page -->
-<div class="review-section" id="review-page">
-    <h2>Customer Reviews</h2>
-    <div class="review-item">
-        <strong>John:</strong> Great pizza!
-    </div>
-    <div class="review-item">
-        <strong>Sarah:</strong> Loved the burger!
-    </div>
-    <h3>Add a Review</h3>
-    <form class="review-form" onsubmit="addReview(event)">
-        <input type="text" id="reviewer" placeholder="Your name" required>
-        <textarea id="review-text" placeholder="Your review" required></textarea>
-        <button type="submit">Submit Review</button>
-    </form>
-    <div id="reviews"></div>
+<div class="bottom-section">
+    <p>Contact us | Privacy Policy | Terms of Service</p>
+    <p>© 2024 Foodie. All rights reserved.</p>
 </div>
 
-<!-- Payment Page -->
-<div class="section" id="payment-page">
-    <h2>Your Cart</h2>
-    <ul class="cart" id="cart"></ul>
-    <p>Total: $<span id="total">0</span></p>
-    <button class="payment-btn" onclick="processPayment()">Pay $<span id="payment-total">0</span></button>
-</div>
 
-<!-- Navigation Buttons -->
-<div class="nav-buttons">
-    <button class="nav-btn"onclick="showPage('menu-page')">Menu</button>
-    <button onclick="showPage('review-page')">Reviews</button>
-    <button onclick="showPage('payment-page')">Cart/Payment</button>
-</div>
 
 
 
