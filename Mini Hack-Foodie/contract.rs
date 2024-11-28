@@ -1,67 +1,59 @@
-use solana_program::{
-    account_info::{next_account_info, AccountInfo},
-    entrypoint,
-    entrypoint::ProgramResult,
-    msg,
-    program_error::ProgramError,
-    pubkey::Pubkey,
-};
+use anchor_lang::prelude::*;
+use anchor_lang::solana_program::system_program;
 
-entrypoint!(process_instruction);
+declare_id!("YourProgramIDGoesHere");
 
-fn process_instruction(
-    program_id: &Pubkey,
-    accounts: &[AccountInfo],
-    instruction_data: &[u8],
-) -> ProgramResult {
-    let accounts_iter = &mut accounts.iter();
+#[program]
+pub mod food_order_system {
+    use super::*;
 
-    // Get the accounts needed
-    let account = next_account_info(accounts_iter)?;
-    if !account.is_signer {
-        msg!("Missing required signature");
-        return Err(ProgramError::MissingRequiredSignature);
+    pub fn process_payment(ctx: Context<ProcessPayment>, amount: u64) -> Result<()> {
+        let payment_data = &mut ctx.accounts.payment_data;
+
+        // Record the amount paid and the buyer's public key
+        payment_data.buyer = *ctx.accounts.user.key;
+        payment_data.amount = amount;
+
+        // Transfer SOL from the user to the merchant
+        let ix = anchor_lang::solana_program::system_instruction::transfer(
+            ctx.accounts.user.key,
+            ctx.accounts.merchant.key,
+            amount,
+        );
+        anchor_lang::solana_program::program::invoke(
+            &ix,
+            &[
+                ctx.accounts.user.to_account_info(),
+                ctx.accounts.merchant.to_account_info(),
+            ],
+        )?;
+
+        // Log successful payment
+        msg!("Payment of {} lamports processed for user: {}", amount, ctx.accounts.user.key);
+        Ok(())
     }
+}
 
-    // Parse the instruction data
-    match instruction_data[0] {
-        0 => {
-            // Mint tokens
-            msg!("Minting tokens");
-            let amount = u64::from_le_bytes(instruction_data[1..9].try_into().unwrap());
-            let mut balance = account.try_borrow_mut_data()?;
-            let current_balance = u64::from_le_bytes(balance[..8].try_into().unwrap());
-            let new_balance = current_balance + amount;
-            balance[..8].copy_from_slice(&new_balance.to_le_bytes());
-        }
-        1 => {
-            // Transfer tokens
-            msg!("Transferring tokens");
-            let recipient_account = next_account_info(accounts_iter)?;
-            let amount = u64::from_le_bytes(instruction_data[1..9].try_into().unwrap());
+#[derive(Accounts)]
+pub struct ProcessPayment<'info> {
+    /// The account paying for the order
+    #[account(mut)]
+    pub user: Signer<'info>,
 
-            // Deduct from sender
-            let mut sender_balance = account.try_borrow_mut_data()?;
-            let sender_current_balance = u64::from_le_bytes(sender_balance[..8].try_into().unwrap());
-            if sender_current_balance < amount {
-                msg!("Insufficient funds");
-                return Err(ProgramError::InsufficientFunds);
-            }
-            let sender_new_balance = sender_current_balance - amount;
-            sender_balance[..8].copy_from_slice(&sender_new_balance.to_le_bytes());
+    /// The merchant receiving payment
+    #[account(mut)]
+    pub merchant: SystemAccount<'info>,
 
-            // Add to recipient
-            let mut recipient_balance = recipient_account.try_borrow_mut_data()?;
-            let recipient_current_balance =
-                u64::from_le_bytes(recipient_balance[..8].try_into().unwrap());
-            let recipient_new_balance = recipient_current_balance + amount;
-            recipient_balance[..8].copy_from_slice(&recipient_new_balance.to_le_bytes());
-        }
-        _ => {
-            msg!("Invalid instruction");
-            return Err(ProgramError::InvalidInstructionData);
-        }
-    }
+    /// Data account to log payment information
+    #[account(init_if_needed, payer = user, space = 8 + 32 + 8)]
+    pub payment_data: Account<'info, PaymentData>,
 
-    Ok(())
+    /// System program for handling transfers
+    pub system_program: Program<'info, System>,
+}
+
+#[account]
+pub struct PaymentData {
+    pub buyer: Pubkey, // Buyer's public key
+    pub amount: u64,   // Amount paid in lamports
 }
